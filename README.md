@@ -10,6 +10,17 @@
 
 ---
 
+## 📦 Challenge 2 Submission Deliverables
+
+| Required Deliverable | Repository Path | Description |
+| :--- | :--- | :--- |
+| **Source Code** | [`src/`](src/) | Interactive React 19 + TypeScript + Vite Cockpit, including streaming detector [`src/utils/anomalyEngine.ts`](src/utils/anomalyEngine.ts) and NAB dataset suite [`src/data/nabDatasets.ts`](src/data/nabDatasets.ts). |
+| **Notebooks** | [`notebooks/sentinel_f1_anomaly_detection.ipynb`](notebooks/sentinel_f1_anomaly_detection.ipynb) | End-to-end Python Jupyter Notebook implementing the 8 permitted algorithms, feature engineering, adaptive thresholding $\tau_t$, and NAB benchmark evaluation. |
+| **Readme Documentation** | [`README.md`](README.md) | Architectural manifesto, mathematical formulation, benchmark comparison matrix, and quickstart guide. |
+| **Prediction Results Files** | [`results/`](results/) | Official competition prediction CSVs formatted to starter kit schema: [`predictions_f1_telemetry_2026.csv`](results/predictions_f1_telemetry_2026.csv) and [`predictions_nab_benchmark.csv`](results/predictions_nab_benchmark.csv). |
+
+---
+
 ## 📌 Executive Summary
 
 Modern telemetry streams (such as Formula 1 vehicle sensors and IoT systems) are subject to severe **covariate shifts**—non-stationary regime shifts caused by tire degradation, fuel burn, pit stops, and safety car interventions. Traditional static thresholds or standalone statistical baselines produce excessive false alarms (>12% false positive rate) during expected operational shifts.
@@ -18,7 +29,7 @@ Modern telemetry streams (such as Formula 1 vehicle sensors and IoT systems) are
 1. **Multi-Head Hybrid Consensus**: A weighted ensemble fusing Rolling Z-score (40%), Isolation Forest (35%), Local Outlier Factor (15%), and Neural Autoencoder reconstruction (10%).
 2. **Covariate-Shift Adaptive Thresholding**: Dynamic threshold $\tau_t = \mu_W + k\cdot\sigma_W \cdot (1 + \Delta_{\text{regime}})$ that automatically adjusts to expected race regime changes.
 3. **Transparent Evidence Decomposition**: Every flagged window includes feature attribution, detector voting agreement, and clearance margin over adaptive threshold.
-4. **Standard NAB Benchmark Suite**: Native evaluation and streaming mode across Numenta Anomaly Benchmark files (`nyc_taxi.csv`, `ambient_temperature_system_failure.csv`, `art_daily_flatline.csv`, `cpu_utilization_asg_misconfiguration.csv`).
+4. **Standard NAB Benchmark Suite**: Native evaluation and streaming mode across Numenta Anomaly Benchmark files (`nyc_taxi.csv`, `ambient_temperature_system_failure.csv`, `art_daily_flatmiddle.csv`, `cpu_utilization_asg_misconfiguration.csv`).
 
 ---
 
@@ -97,8 +108,9 @@ Raw Telemetry Stream (OpenF1 / Custom CSV / NAB Files)
 ### Prerequisites
 - Node.js 18+ or 20+
 - npm 9+
+- Python 3.10+ (for Jupyter notebook reproducibility)
 
-### Installation & Run
+### Installation & Run Web Cockpit
 
 ```bash
 # Clone the repository
@@ -116,6 +128,19 @@ npm run build
 ```
 
 Open your browser to `http://localhost:5173` to explore the live interactive Sentinel Cockpit.
+
+### Run Python Notebook & Prediction Generation
+
+```bash
+# Install Python dependencies
+pip install numpy pandas matplotlib scikit-learn jupyter
+
+# Launch the reproducibility notebook
+jupyter notebook notebooks/sentinel_f1_anomaly_detection.ipynb
+
+# Or run the prediction generator script directly
+python scripts/generate_predictions.py
+```
 
 ---
 

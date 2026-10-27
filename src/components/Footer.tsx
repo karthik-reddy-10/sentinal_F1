@@ -68,19 +68,32 @@ export default function Footer() {
             </a>
             <span>·</span>
             <a
-              href="#pipeline"
+              href="https://github.com/karthik-reddy-10/sentinal_F1/tree/main/notebooks"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-white/60 hover:text-white hover:underline transition"
+              title="View Jupyter Notebooks on GitHub"
             >
               NOTEBOOKS
             </a>
             <span>·</span>
             <button
               onClick={handleExportCsv}
-              className="text-cyan hover:text-white hover:underline transition cursor-pointer"
+              className="text-cyan hover:text-white hover:underline transition cursor-pointer font-bold"
               title="Download standard predictions CSV (timestamp, value, anomaly_score, label)"
             >
               RESULTS FILE (.CSV)
             </button>
+            <span>·</span>
+            <a
+              href="https://github.com/karthik-reddy-10/sentinal_F1/tree/main/results"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/60 hover:text-white hover:underline transition"
+              title="View Prediction CSV Files in GitHub Repository"
+            >
+              RESULTS REPO
+            </a>
             <span>·</span>
             <a
               href="#pipeline"
